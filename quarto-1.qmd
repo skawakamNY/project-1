@@ -2,5 +2,39 @@
 title: "Untitled"
 format: html
 author: "Shuntaro Kawakami"
+execute: 
+  echo: false
 ---
 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(ggthemes)
+
+# View the first few rows
+glimpse(penguins)
+```
+
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(size = 3, alpha = 0.8, na.rm = TRUE) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Penguin Morphometrics",
+    subtitle = "Bill Length vs. Flipper Length",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)",
+    color = "Species",
+    caption = "Data: palmerpenguins package"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "top",
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_blank()
+  )
+```
